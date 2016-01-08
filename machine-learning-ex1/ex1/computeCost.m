@@ -4,10 +4,15 @@ function J = computeCost(X, y, theta)
 %   parameter for linear regression to fit the data points in X and y
 
 % Initialize some useful values
-m = length(y); % number of training examples
+%number of training examples
+m = length(y); 
 
-% You need to return the following variables correctly 
-J = 0;
+%calculates the differences between the predicted value and the y value
+%for each sample
+squared_differences = (X*theta - y) .^ 2;
+
+%gets the sum of the differences divided by the number of samples
+J = (1/(2*m)) * sum(squared_differences);
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost of a particular choice of theta

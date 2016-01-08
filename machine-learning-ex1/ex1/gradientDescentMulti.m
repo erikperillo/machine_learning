@@ -17,15 +17,15 @@ for iter = 1:num_iters
     %       of the cost function (computeCostMulti) and gradient here.
     %
 
-
-
-
-
-
-
-
-
-
+	%h(X), prediction with current thetas
+	prediction = X*theta;
+	%differences between predictions and y values
+	difference = prediction - y;
+	%partial derivatives relative to x0 (1) and x1
+	derivative = X'*difference;
+	
+	%getting new theta
+	theta = theta - alpha*(1/m)*derivative;
 
     % ============================================================
 

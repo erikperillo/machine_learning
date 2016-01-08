@@ -6,16 +6,16 @@ function J = computeCostMulti(X, y, theta)
 % Initialize some useful values
 m = length(y); % number of training examples
 
-% You need to return the following variables correctly 
-J = 0;
-
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost of a particular choice of theta
 %               You should set J to the cost.
 
+%calculates the differences between the predicted value and the y value
+%for each sample
+difference = (X*theta - y);
 
-
-
+%gets the sum of the differences divided by the number of samples
+J = (1/(2*m)) * difference'*difference;
 
 % =========================================================================
 
