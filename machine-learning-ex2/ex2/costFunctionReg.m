@@ -17,10 +17,23 @@ grad = zeros(size(theta));
 %               Compute the partial derivatives and set grad to the partial
 %               derivatives of the cost w.r.t. each parameter in theta
 
+%getting prediction
+pred = sigmoid(X*theta);
 
+%getting the term that fits the training set
+fit_term = -y'*log(pred) - (1-y')*log(1-pred);
 
+%getting the term that penalizes in regularization
+reg_term = (1/2)*lambda*theta(2:end)'*theta(2:end);
 
+%computing cost
+J = (1/m)*(fit_term + reg_term);
 
+%assuming X(:,1) is a collumn of ones
+grad(1) = (1/m)*X(:,1)'*(pred - y);
+
+%computing for the rest of the features
+grad(2:end) = (1/m)*(X(:,2:end)'*(pred - y) + lambda*theta(2:end));
 
 % =============================================================
 

@@ -15,11 +15,11 @@ p = zeros(m, 1);
 %               You should set p to a vector of 0's and 1's
 %
 
+%given that h(x) = 1/(1 + e^(-theta'*x))
+sig = sigmoid(X*theta);
 
-
-
-
-
+%now the prediction
+p = (sig >= 0.5);
 
 % =========================================================================
 
