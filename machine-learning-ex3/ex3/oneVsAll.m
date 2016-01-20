@@ -48,17 +48,23 @@ X = [ones(m, 1) X];
 %         fmincg (@(t)(lrCostFunction(t, X, (y == c), lambda)), ...
 %                 initial_theta, options);
 %
+	
+%creating initial theta 
+init_theta = zeros(n + 1, 1);	
 
+for i=1:num_labels
+	%getting labels for class i
+	training_y = (y == i);
 
+	%getting theta parameters 
+	options = optimset('GradObj', 'on', 'MaxIter', 100);
+	[theta] = ...
+		fmincg(@(t)(lrCostFunction(t, X, training_y, lambda)), ...
+			   init_theta, options);
 
-
-
-
-
-
-
-
-
+	%assigning theta to ith classifier
+	all_theta(i, :) = theta';	
+end
 
 % =========================================================================
 

@@ -30,11 +30,15 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
+%getting prediction
+z = X*all_theta';
+prediction = sigmoid(z);
 
+%classifying each prediction as the label of the highest probability
+[max_val, max_id] = max(prediction');
 
-
-
-
+%result
+p = max_id';
 
 % =========================================================================
 
