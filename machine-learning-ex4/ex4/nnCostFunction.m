@@ -72,9 +72,9 @@ vec_labels = yLabelToVec(y)';
 partial_costs = partialCost(output, vec_labels);
 
 %getting total cost
-J = (1/m)*sum(sum(partial_costs));
-
-
+J = (1/m)*(sum(sum(partial_costs)) + ...
+%adding regulatization term
+   0.5*lambda*(sum(sum(Theta1(:, 2:end).^2)) + sum(sum(Theta2(:, 2:end).^2))));
 
 
 
