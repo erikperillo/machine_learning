@@ -62,6 +62,7 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+%------------------------------COST-------------------------------------------
 %getting output layer values
 output = feedForward(X, Theta1, Theta2);
 
@@ -75,11 +76,35 @@ partial_costs = partialCost(output, vec_labels);
 J = (1/m)*(sum(sum(partial_costs)) + ...
 %adding regulatization term
    0.5*lambda*(sum(sum(Theta1(:, 2:end).^2)) + sum(sum(Theta2(:, 2:end).^2))));
+%------------------------------/COST------------------------------------------
 
+%------------------------------GRADIENT---------------------------------------
+%appending ones to X
+X = [ones(size(X, 1), 1) X];
 
+g_t1 = zeros(size(Theta1));
+g_t2 = zeros(size(Theta2));
 
+for i = 1:m
+	%getting x and y
+	x = output(:, i);
+	y = vec_labels(:, i);	
+	input = X(i, :)';
 
+	%getting output delta
+	out_delta = outputLayerDelta(x, y);
+	%getting hidden layer delta
+	layer2_signal = Theta1*input;
+	hid_delta = hiddenLayerDelta(Theta2, out_delta, [1; layer2_signal]);
+	
+	g_t2 = g_t2 + out_delta*[1; activation(layer2_signal)]';
+	g_t1 = g_t1 + hid_delta(2:end)*input';
+end
 
+%computing regularized gradient
+Theta1_grad = (1/m)*(g_t1 + lambda*[zeros(size(g_t1, 1), 1) Theta1(:, 2:end)]);
+Theta2_grad = (1/m)*(g_t2 + lambda*[zeros(size(g_t2, 1), 1) Theta2(:, 2:end)]);
+%------------------------------/GRADIENT--------------------------------------
 
 % -------------------------------------------------------------
 
