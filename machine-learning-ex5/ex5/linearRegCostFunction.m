@@ -19,19 +19,18 @@ grad = zeros(size(theta));
 %               You should set J to the cost and grad to the gradient.
 %
 
+%intermediate values for calculating cost
 prediction = X*theta;
 diffs = prediction - y;
-
+%calculating cost
 J = 0.5*(1/m)*(diffs'*diffs + lambda*(theta(2:end)'*theta(2:end)));
 
-
-
-
-
-
-
-
-
+%calculating grad
+unreg_grad_term = X'*diffs;
+%adding regularization term
+reg_grad_term = [0; theta(2:end)];
+%final gradient
+grad = (1/m)*(unreg_grad_term + lambda*reg_grad_term);
 
 % =========================================================================
 
