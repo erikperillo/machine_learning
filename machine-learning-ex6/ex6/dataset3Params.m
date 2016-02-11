@@ -23,13 +23,9 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
-%golden number :^)
-%phi = 1.618034;
 %creating options
-%c_vec = powers(0.005, 10, phi^2);
 c_vec = [0.01 0.03 0.1 0.3 1 3 10 30];
 sigma_vec = [0.01 0.03 0.1 0.3 1 3 10 30];
-%sigma_vec = powers(0.005, 10, phi^2);
 
 %initial parameters
 min_cost = 1.0;
