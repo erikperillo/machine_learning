@@ -26,12 +26,20 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
+for i = 1:K
+	%getting map of indexes
+	map = idx == i;
 
+	%getting number of points closer to i-th centroid
+	c = sum(map);
 
-
-
-
-
+	%computing centroid
+	if c == 0
+		centroids(i, :) = 0;
+	else
+		centroids(i, :) = (1/c) * sum(X .* map);
+	end
+end
 
 % =============================================================
 

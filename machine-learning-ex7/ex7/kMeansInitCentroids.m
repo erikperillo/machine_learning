@@ -13,13 +13,11 @@ centroids = zeros(K, size(X, 2));
 %               the dataset X
 %
 
+%getting random indexes
+rand_idx = randperm(size(X, 1));
 
-
-
-
-
-
-
+%taking first K examples as centroids
+centroids = X(rand_idx(1:K), :);
 % =============================================================
 
 end
