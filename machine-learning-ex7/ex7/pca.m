@@ -20,11 +20,11 @@ S = zeros(n);
 %       number of examples).
 %
 
+%computing covariance matrix
+cov_mat = (1/m) * X'*X;
 
-
-
-
-
+%getting principal components
+[U, S, V] = svd(cov_mat);
 
 % =========================================================================
 

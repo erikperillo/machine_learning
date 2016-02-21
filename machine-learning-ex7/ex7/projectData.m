@@ -18,8 +18,11 @@ Z = zeros(size(X, 1), K);
 %                    projection_k = x' * U(:, k);
 %
 
+%getting principal components
+U_reduce = U(:, 1:K);
 
-
+%projecting data
+Z = X*U_reduce;
 
 % =============================================================
 
