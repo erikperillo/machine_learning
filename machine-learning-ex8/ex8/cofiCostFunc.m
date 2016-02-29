@@ -40,20 +40,17 @@ Theta_grad = zeros(size(Theta));
 %                     partial derivatives w.r.t. to each element of Theta
 %
 
+%getting prediction for values
+pred = X*Theta';
+%getting differences from actual values
+diffs = (pred - Y) .* R;
+%computing cost
+J = (1/2)*sum(sum(diffs .^ 2)) + (lambda/2)*(sum(sum(Theta.^2))) + ...
+		(lambda/2)*sum(sum(X.^2));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+%computing gradient
+X_grad = diffs*Theta + lambda*X;
+Theta_grad = diffs'*X + lambda*Theta;
 
 % =============================================================
 
