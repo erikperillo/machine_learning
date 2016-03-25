@@ -26,6 +26,13 @@ cov_mat = (1/m) * X'*X;
 %getting principal components
 [U, S, V] = svd(cov_mat);
 
+U
+x1 = U(:, 1); x2 = U(:, 2);
+x1'*x1
+x2'*x2
+S
+V
+
 % =========================================================================
 
 end
